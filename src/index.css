@@ -7,8 +7,13 @@ body, html, #root, .app {
 body {
     margin: 0;
     background-color: rgba(241, 241, 241, 0.38);
+    font-family:  sans-serif;
 }
 a{
     text-decoration: none;
     color: black;
+}
+
+svg{
+    pointer-events: none;
 }

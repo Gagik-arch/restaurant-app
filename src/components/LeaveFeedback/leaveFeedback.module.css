@@ -1,0 +1,18 @@
+.container {
+
+}
+
+.block {
+    margin-top: 10px;
+
+}
+
+.block > h4 {
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+}
+
+.send {
+    border-radius: 6px;
+}

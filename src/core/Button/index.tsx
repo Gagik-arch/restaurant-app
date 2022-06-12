@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 interface Props {
     onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLDivElement>,
-    label?: string,
+    label?: string ,
     className?: string | string[],
     link?: string,
 }

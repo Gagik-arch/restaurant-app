@@ -14,7 +14,7 @@ const restaurantsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getRestaurants.fulfilled, (state, action) => {
-            const sorted: IRestaurant[] = action.payload.sort((a: IRestaurant, b: IRestaurant) => Number(b.rating) - Number(a.rating))
+            const sorted: IRestaurant[] = action.payload.sort((a: IRestaurant, b: IRestaurant) => b.rating - a.rating)
             state.data = sorted
             state.isLoading = false
         })
