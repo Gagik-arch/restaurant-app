@@ -6,6 +6,7 @@ import {getRestaurants} from "../../store/asyncThunks";
 
 export const Main: FC = () => {
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(getRestaurants())
     }, [])

@@ -7,6 +7,7 @@ export interface IRestaurant{
     telephone: string
     description?:string
     about?:string
+    image:string
 }
 export interface IReview{
     feedback: string
@@ -15,6 +16,12 @@ export interface IReview{
 }
 export interface IRestaurantsInitialState {
     isLoading: boolean
-    data: IRestaurant | IRestaurant[] | null
+    data: null | IRestaurant | IRestaurant[] |   []
     error: any
+}
+
+export interface IFeedbackBody{
+    feedback?:string,
+    rating?:number,
+    id?:string
 }

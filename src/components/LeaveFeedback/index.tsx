@@ -1,24 +1,40 @@
-import {FC} from 'react'
+import {FC, useRef} from 'react'
 import s from './leaveFeedback.module.css'
 import {Rating} from "../index";
 import {Input, Button} from "../../core";
-import {IRestaurant, IRestaurantsInitialState} from "../../interfaces";
+import {IRestaurant, IFeedbackBody} from "../../interfaces";
+import {useDispatch} from "../../store";
+import {sendFeedback} from '../../store/asyncThunks'
 
 interface IProps {
     data: IRestaurant
 }
 
 const LeaveFeedback: FC<IProps> = ({data}) => {
+    const dispatch = useDispatch()
+    const body = useRef<IFeedbackBody | {}>({rating:data.rating,id:data._id}).current
+
+    const onFinish = (text, key) => {
+        body[key] = text
+    }
+    const onSend = () => {
+        dispatch(sendFeedback(body))
+    }
 
     return (
         <div className={s.container}>
             <div className={s.block}>
-
                 <h4>
-                    <b>LeaveFeedback</b> <Rating data={data.rating}/>
+                    <b>Leave Feedback</b> <Rating data={data.rating}
+                                                  onClick={(rating: number) => {
+                                                      if ("rating" in body) {
+                                                          body.rating = rating
+                                                      }
+                                                      console.log(body)
+                                                  }}/>
                 </h4>
-                <Input type={'textarea'} placeholder={'Leave feedback'}/>
-                <Button className={s.send} label={'Send Feedback'}/>
+                <Input type={'textarea'} placeholder={'Leave feedback'} name={'feedback'} onFinish={onFinish}/>
+                <Button className={s.send} label={'Send'} onClick={onSend}/>
             </div>
         </div>
     )

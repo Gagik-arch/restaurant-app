@@ -11,6 +11,11 @@
     display: flex;
     align-items: center;
     margin: 0 0 10px 0;
+    justify-content: space-between;
+}
+
+.block > h4 > b {
+    margin-right: 10px;
 }
 
 .send {

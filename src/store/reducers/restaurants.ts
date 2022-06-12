@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { getRestaurants} from '../asyncThunks'
+import {getRestaurants} from '../asyncThunks'
 import {IRestaurant, IRestaurantsInitialState} from "../../interfaces";
 
 const initialState: IRestaurantsInitialState = {
@@ -14,6 +14,7 @@ const restaurantsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getRestaurants.fulfilled, (state, action) => {
+
             const sorted: IRestaurant[] = action.payload.sort((a: IRestaurant, b: IRestaurant) => b.rating - a.rating)
             state.data = sorted
             state.isLoading = false
@@ -22,7 +23,7 @@ const restaurantsSlice = createSlice({
             state.isLoading = true
         })
         builder.addCase(getRestaurants.rejected, (state, action) => {
-            action.payload ? state.error = action?.payload : state.error = action.error
+            state.error = action.payload || action.error
             state.isLoading = false
         })
     },
