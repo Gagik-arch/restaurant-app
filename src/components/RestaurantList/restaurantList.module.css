@@ -1,0 +1,30 @@
+.container {
+    max-width: 400px;
+    min-width: 250px;
+    width: 100%;
+    border-right: 2px solid var(--border-color);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(238, 238, 238, 0.9);
+    box-shadow: 0 0 8px rgba(206, 206, 206, 0.9);
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+    white-space: nowrap;
+    flex: 1;
+    align-items: center;
+    padding: 10px 5px 10px 10px;
+}

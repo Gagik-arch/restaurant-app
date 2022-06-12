@@ -1,0 +1,14 @@
+@import "./styles/variables.css";
+
+body, html, #root, .app {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: rgba(241, 241, 241, 0.38);
+}
+a{
+    text-decoration: none;
+    color: black;
+}
