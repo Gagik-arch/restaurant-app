@@ -1,4 +1,4 @@
-import {FC, useRef} from 'react'
+import {FC, useRef, useState} from 'react'
 import s from './leaveFeedback.module.css'
 import {Rating} from "../index";
 import {Input, Button} from "../../core";
@@ -12,13 +12,19 @@ interface IProps {
 
 const LeaveFeedback: FC<IProps> = ({data}) => {
     const dispatch = useDispatch()
-    const body = useRef<IFeedbackBody | {}>({rating:data.rating,id:data._id}).current
+    const [warning, setWaring] = useState<boolean>(false)
+    const body = useRef<IFeedbackBody | {}>({rating: data.rating, id: data._id}).current
 
     const onFinish = (text, key) => {
         body[key] = text
     }
     const onSend = () => {
-        dispatch(sendFeedback(body))
+        if (body.hasOwnProperty('feedback')) {
+            dispatch(sendFeedback(body))
+            setWaring(false)
+        } else {
+            setWaring(true)
+        }
     }
 
     return (
@@ -30,10 +36,13 @@ const LeaveFeedback: FC<IProps> = ({data}) => {
                                                       if ("rating" in body) {
                                                           body.rating = rating
                                                       }
-                                                      console.log(body)
                                                   }}/>
                 </h4>
-                <Input type={'textarea'} placeholder={'Leave feedback'} name={'feedback'} onFinish={onFinish}/>
+                <Input type={'textarea'}
+                       placeholder={'Leave feedback'}
+                       name={'feedback'}
+                       className={warning ? s.feedback_textarea : ''}
+                       onFinish={onFinish}/>
                 <Button className={s.send} label={'Send'} onClick={onSend}/>
             </div>
         </div>

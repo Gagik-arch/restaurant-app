@@ -1,12 +1,11 @@
-import {FC, useEffect} from 'react'
+import {FC} from 'react'
 import s from './restaurantList.module.css'
 import {IRestaurantsInitialState} from "../../interfaces";
-import {useDispatch, useSelector} from "../../store";
+import { useSelector} from "../../store";
 import {Loader, Button} from "../../core";
 
 const RestaurantList: FC = (): JSX.Element => {
     const {data, isLoading, error} = useSelector<IRestaurantsInitialState>(state => state.restaurants)
-    const dispatch = useDispatch()
 
     if (error) {
         return <div>Error</div>

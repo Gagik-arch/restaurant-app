@@ -4,21 +4,24 @@ import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "../../store";
 import {IRestaurantsInitialState} from "../../interfaces";
 import {getRestaurant} from "../../store/asyncThunks";
-import {LeaveFeedback,Reviews} from '../../components'
+import {LeaveFeedback, Reviews} from '../../components'
 import {Loader} from "../../core";
 
 export const Current: FC = () => {
     const dispatch = useDispatch()
     const {search} = useLocation();
-    const id = new URLSearchParams(search).get('id');
+    let id = new URLSearchParams(search).get('id');
     const {data, isLoading, error} = useSelector<IRestaurantsInitialState>(state => state.restaurant)
 
     useEffect(() => {
-        dispatch(getRestaurant(id))
+        if(id){
+            id = id.split('/').shift()
+            dispatch(getRestaurant(id))
+        }
     }, [])
 
     if (error) {
-        return <div>Error</div>
+        return <div>Not Found</div>
     }
     return (
         <div style={{height: ' 100vh'}}>
@@ -26,34 +29,33 @@ export const Current: FC = () => {
                 <div className={s.block}>
                     {isLoading && <Loader/>}
                     {
-                        !Array.isArray(data) && !isLoading && (
+                        !Array.isArray(data) && data && !isLoading && (
                             <>
-                            <div style={{ display: 'flex', flexDirection: 'column'}}>
-                                <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
-                                    <div className={s.top}>
-                                        <div className={s.title}>
-                                            {data.name}
-                                            <div className={s.address} title={data.address}>
-                                                {data.address}
+                                <div className={s.content}>
+                                    <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+                                        <div className={s.top}>
+                                            <div className={s.title}>
+                                                {data.name}
+                                                <div className={s.address} title={data.address}>
+                                                    {data.address}
+                                                </div>
                                             </div>
                                         </div>
+                                        <h5>About us </h5>
+                                        {data.about}
+                                        <h5>Description</h5>
+                                        {data.description}
+                                        <div className={s.image}>
+                                            <img src={data.image} alt="Image"/>
+                                        </div>
                                     </div>
-                                    <h5>About us </h5>
-                                    {data.about}
-                                    <h5>Description</h5>
-                                    {data.description}
-                                    <div className={s.image}>
-                                        <img src={data.image} alt="Image"/>
-                                    </div>
+                                    <LeaveFeedback data={data}/>
                                 </div>
-                                <LeaveFeedback data={data}/>
-                            </div>
-                                <Reviews data={data.reviews} />
+                                <Reviews data={data.reviews}/>
                             </>
                         )
                     }
                 </div>
-
             </div>
         </div>
 

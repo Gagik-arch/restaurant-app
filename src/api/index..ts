@@ -42,6 +42,7 @@ class Api {
 
         return await fetch(url, config)
             .then((response: Response) => response.json())
+            .catch(e=>e)
     }
 }
 

@@ -17,7 +17,6 @@ class RestaurantApi extends Api {
 
     public sendFeedback(body) {
         body.userId = sessionStorage.getItem('userId')
-        console.log(body)
         return this.post('/feedback', body).then(res => res)
     }
 }

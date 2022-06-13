@@ -8,10 +8,10 @@ export const getRestaurants = createAsyncThunk(
 )
 export const getRestaurant = createAsyncThunk(
     'restaurants/single',
-    async (id:string) => await restaurantApi.getRestaurant(id)
+    async (id: string) => await restaurantApi.getRestaurant(id)
 )
 
 export const sendFeedback = createAsyncThunk(
     'restaurants/feedback',
-    async (body:IFeedbackBody) => await restaurantApi.sendFeedback(body)
+    async (body: IFeedbackBody) => await restaurantApi.sendFeedback(body)
 )

@@ -14,24 +14,29 @@ const restaurantSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getRestaurant.fulfilled, (state, action) => {
-            state.data = action.payload
             state.isLoading = false
+            action.payload.hasOwnProperty('message') ?
+                state.error = action?.payload :
+                state.data = action.payload
         })
         builder.addCase(getRestaurant.pending, (state) => {
             state.isLoading = true
         })
         builder.addCase(getRestaurant.rejected, (state, action) => {
-            action.payload ? state.error = action?.payload : state.error = action.error
+            action.payload ? state.error = action.payload : state.error = action.error
             state.isLoading = false
         })
         // Feedback
         builder.addCase(sendFeedback.fulfilled, (state, action) => {
-            // @ts-ignore
-            state.data = action.payload
+            action.payload.hasOwnProperty('message') ?
+                state.error = action?.payload :
+                // @ts-ignore
+                state.data = action.payload
         })
         builder.addCase(sendFeedback.pending, (state) => {
         })
         builder.addCase(sendFeedback.rejected, (state, action) => {
+
             action.payload ? state.error = action?.payload : state.error = action.error
         })
     },

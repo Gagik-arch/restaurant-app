@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Current, Main} from "./pages";
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route,Navigate} from 'react-router-dom'
 
 function App() {
     useEffect(() => {
@@ -11,6 +11,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Main/>}/>
             <Route path="/current" element={<Current/>}/>
+            <Route path="*" element={<Navigate to="/" replace/>}/>
         </Routes>
     );
 }

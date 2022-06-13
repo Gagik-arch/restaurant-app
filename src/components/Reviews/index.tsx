@@ -13,7 +13,7 @@ const Reviews: FC<IProps> = ({data}): JSX.Element => {
             <div className={s.reviews}>
                 reviews {data.length}
             </div>
-            {data.map((review, index) => {
+            {data?.map((review, index) => {
                 return (
                     <div key={index} className={s.review}>
                        <div className={s.text}>
