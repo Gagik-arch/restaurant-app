@@ -15,7 +15,7 @@ const mapOptions = {
     preferCanvas: true
 }
 
-const ZOOM = 16
+const ZOOM = 18
 let map, marker, popup;
 
 const Map = () => {
