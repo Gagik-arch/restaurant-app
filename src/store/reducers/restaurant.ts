@@ -15,15 +15,16 @@ const restaurantSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getRestaurant.fulfilled, (state, action) => {
             state.isLoading = false
-            action.payload.hasOwnProperty('message') ?
-                state.error = action?.payload :
-                state.data = action.payload
+            state.data = action.payload
+            console.log(action)
         })
         builder.addCase(getRestaurant.pending, (state) => {
             state.isLoading = true
         })
         builder.addCase(getRestaurant.rejected, (state, action) => {
-            action.payload ? state.error = action.payload : state.error = action.error
+            console.log(action)
+
+            state.error = action.error.message || 'Error'
             state.isLoading = false
         })
         // Feedback

@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import s from './restaurantList.module.css'
 import {IRestaurantsInitialState} from "../../interfaces";
-import { useSelector} from "../../store";
+import {useSelector} from "../../store";
 import {Loader, Button} from "../../core";
 
 const RestaurantList: FC = (): JSX.Element => {
@@ -10,7 +10,6 @@ const RestaurantList: FC = (): JSX.Element => {
     if (error) {
         return <div>Error</div>
     }
-
     return <div className={s.container}>
         {
             isLoading ? <Loader/> :

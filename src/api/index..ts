@@ -11,7 +11,7 @@ class Api {
         this.URL = baseUrl
     }
 
-    public get<T>(url: string = ''): Promise<T> {
+    public get<Response>(url: string = '') {
         return this.configureRequest({url})
     }
 
@@ -19,7 +19,7 @@ class Api {
         return this.configureRequest({url, body, method: 'post'})
     }
 
-    private async configureRequest<T> ({url = '', method = 'get', body}: IConfigureRequest): Promise<T> {
+    private configureRequest({url = '', method = 'get', body}: IConfigureRequest) {
         const token: string | null = localStorage.getItem('token')
         const headers = new Headers()
         url = 'http://localhost:5000/api' + this.URL + url
@@ -40,9 +40,16 @@ class Api {
         }
         config.headers = headers
 
-        return await fetch(url, config)
-            .then((response: Response) => response.json())
-            .catch(e=>e)
+        return fetch(url, config)
+            .then(async (response: Response) => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson ? await response.json() : null;
+                if (!response.ok) {
+                    const error = data  || response.status;
+                    return Promise.reject(error);
+                }
+                return Promise.resolve(data);
+            })
     }
 }
 

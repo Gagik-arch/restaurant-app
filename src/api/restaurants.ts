@@ -1,5 +1,5 @@
 import Api from './index.'
-import {IRestaurant} from '../interfaces'
+import {IRestaurant,IReview} from '../interfaces'
 
 
 class RestaurantApi extends Api {
@@ -17,7 +17,7 @@ class RestaurantApi extends Api {
 
     public sendFeedback(body) {
         body.userId = sessionStorage.getItem('userId')
-        return this.post('/feedback', body).then(res => res)
+        return this.post<IReview>('/feedback', body).then(res => res)
     }
 }
 

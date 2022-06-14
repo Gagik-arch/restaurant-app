@@ -4,6 +4,8 @@ import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "../../store";
 import {IRestaurantsInitialState} from "../../interfaces";
 import {getRestaurant} from "../../store/asyncThunks";
+import restaurantApi from '../../api/restaurants'
+
 import {LeaveFeedback, Reviews} from '../../components'
 import {Loader} from "../../core";
 
@@ -21,7 +23,7 @@ export const Current: FC = () => {
     }, [])
 
     if (error) {
-        return <div>Not Found</div>
+        return <div>{error}</div>
     }
     return (
         <div style={{height: ' 100vh'}}>
