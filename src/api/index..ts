@@ -11,18 +11,18 @@ class Api {
         this.URL = baseUrl
     }
 
-    public get<Response>(url: string = '') {
-        return this.configureRequest({url})
+    public get<T>(url: string = '', cleanReq?: boolean): Promise<T> {
+        return this.configureRequest({url}, cleanReq)
     }
 
-    public post<T>(url: string = '', body: any): Promise<T> {
-        return this.configureRequest({url, body, method: 'post'})
+    public post<T>(url: string = '', body: any, cleanReq?: boolean): Promise<T> {
+        return this.configureRequest({url, body, method: 'post'}, cleanReq)
     }
 
-    private configureRequest({url = '', method = 'get', body}: IConfigureRequest) {
+    private configureRequest({url = '', method = 'get', body}: IConfigureRequest, cleanReq: boolean = false) {
         const token: string | null = localStorage.getItem('token')
         const headers = new Headers()
-        url = 'http://localhost:5000/api' + this.URL + url
+        url = cleanReq ? url : (process.env.REACT_APP_REQUEST_URL + this.URL + url)
 
         const config: RequestInit = {method};
 
@@ -45,7 +45,7 @@ class Api {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson ? await response.json() : null;
                 if (!response.ok) {
-                    const error = data  || response.status;
+                    const error = data || response.status;
                     return Promise.reject(error);
                 }
                 return Promise.resolve(data);

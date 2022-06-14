@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {getRestaurant, sendFeedback} from '../asyncThunks'
-import {IRestaurant, IRestaurantsInitialState} from "../../interfaces";
+import {IRestaurantsInitialState} from "../../interfaces";
 
 const initialState: IRestaurantsInitialState = {
     isLoading: true,
@@ -16,14 +16,11 @@ const restaurantSlice = createSlice({
         builder.addCase(getRestaurant.fulfilled, (state, action) => {
             state.isLoading = false
             state.data = action.payload
-            console.log(action)
         })
         builder.addCase(getRestaurant.pending, (state) => {
             state.isLoading = true
         })
         builder.addCase(getRestaurant.rejected, (state, action) => {
-            console.log(action)
-
             state.error = action.error.message || 'Error'
             state.isLoading = false
         })
@@ -37,7 +34,6 @@ const restaurantSlice = createSlice({
         builder.addCase(sendFeedback.pending, (state) => {
         })
         builder.addCase(sendFeedback.rejected, (state, action) => {
-
             action.payload ? state.error = action?.payload : state.error = action.error
         })
     },

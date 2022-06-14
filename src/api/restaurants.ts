@@ -1,5 +1,5 @@
 import Api from './index.'
-import {IRestaurant,IReview} from '../interfaces'
+import {IRestaurant, IReview} from '../interfaces'
 
 
 class RestaurantApi extends Api {
@@ -19,6 +19,7 @@ class RestaurantApi extends Api {
         body.userId = sessionStorage.getItem('userId')
         return this.post<IReview>('/feedback', body).then(res => res)
     }
+
 }
 
 const restaurantApi = new RestaurantApi()

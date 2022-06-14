@@ -10,3 +10,5 @@ declare namespace NodeJS {
         PUBLIC_URL: string;
     }
 }
+
+export {}

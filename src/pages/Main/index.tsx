@@ -1,6 +1,6 @@
-import {FC, useEffect} from 'react'
+import React, {FC, useEffect} from 'react'
 import s from './main.module.css'
-import { RestaurantList,GoogleMap } from 'components'
+import { RestaurantList,Map } from 'components'
 import {useDispatch} from "../../store";
 import {getRestaurants} from "../../store/asyncThunks";
 
@@ -14,7 +14,10 @@ export const Main: FC = () => {
     return (
         <div className={s.container} >
             <RestaurantList />
-            <GoogleMap/>
+            <div style={{   width: '100%',
+                height: '100%'}} id="map">
+                <Map/>
+            </div>
         </div>
     )
 }
