@@ -29,14 +29,16 @@ const Map = () => {
             container._leaflet_id = null;
         }
         map = L.map('map')
+
     }, [])
 
     useEffect(() => {
-
+        marker && map.removeLayer(marker); // remove marker
         if (restaurants.data.length) {
             return (() => {
                 locationApi.getLatLng(restaurants.data[0].address)
                     .then(res => {
+                        marker && map.removeLayer(marker); //
                         defaultData.location = res.results[0].locations[0].latLng
                         defaultData.address = res.results[0].locations[0].street + '|' +
                             res.results[0].providedLocation.location.replace('Armenia ', '')
@@ -58,9 +60,9 @@ const Map = () => {
     useEffect(() => {
         if (data) {
             let {location, address} = data
-            marker && map.removeLayer(marker); // remove marker
 
-            map.panTo(new L.LatLng(location.lat, location.lng));
+            marker && map.removeLayer(marker); // remove marker
+            map.setView(Object.values(location), ZOOM);
             marker = L.marker([location.lat, location.lng]).addTo(map);
             popup = marker.bindPopup(generateAddress(address));
 
@@ -70,7 +72,6 @@ const Map = () => {
                 const id = sessionStorage.getItem('restaurantId')
                 navigate('/current?id=' + id)
             })
-
         }
     }, [data])
 

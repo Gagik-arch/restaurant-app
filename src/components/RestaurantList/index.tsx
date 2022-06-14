@@ -26,7 +26,7 @@ const RestaurantList: FC = (): JSX.Element => {
                     (Array.isArray(data) && data.length) ? data.map((restaurant, index) => (
                             <div className={s.list}
                                  style={{
-                                     animationDelay:index * 30 + 'ms'
+                                     animationDelay:index * 25 + 'ms'
                                  }}
                                  title={restaurant.name}
                                  key={index}
