@@ -31,7 +31,8 @@ const LeaveFeedback: FC<IProps> = ({data}) => {
         <div className={s.container}>
             <div className={s.block}>
                 <h4>
-                    <b>Leave Feedback</b> <Rating data={data.rating}
+                    <b>Leave Feedback</b>
+                    <Rating data={data.rating}
                                                   onClick={(rating: number) => {
                                                       if ("rating" in body) {
                                                           body.rating = rating
