@@ -1,2 +1,7 @@
-export * from './Main'
-export * from './Current'
+import Main from './Main'
+import Current from './Current'
+
+export { 
+    Main,
+    Current,
+}

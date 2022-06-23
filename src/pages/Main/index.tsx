@@ -1,23 +1,31 @@
-import React, {FC, useEffect} from 'react'
+import { FC, useEffect, useState } from 'react'
 import s from './main.module.css'
-import { RestaurantList,Map } from 'components'
-import {useDispatch} from "../../store";
-import {getRestaurants} from "../../store/asyncThunks";
+import { RestaurantList, Map } from 'components'
+import { useDispatch } from '../../store'
+import { getRestaurants } from '../../store/asyncThunks'
+import { Modal } from './../../core'
 
-export const Main: FC = () => {
-    const dispatch = useDispatch()
+const Main: FC = (): JSX.Element => {
+  const [visibility, setVisibility] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getRestaurants())
-    }, [])
+  useEffect(() => {
+    dispatch(getRestaurants())
+  }, [])
 
-    return (
-        <div className={s.container} >
-            <RestaurantList />
-            <div style={{   width: '100%',
-                height: '100%'}} id="map">
-                <Map/>
-            </div>
-        </div>
-    )
+  return (
+    <div className={s.container}>
+      <button onClick={() => setVisibility(!visibility)} className={s.btn}>
+        click
+      </button>
+      <button onClick={() => setVisibility(!visibility)} className={s.btn2}>
+        click
+      </button>
+      <RestaurantList />
+      <Map />
+      <Modal visibility={visibility} setVisibility={setVisibility} />
+    </div>
+  )
 }
+
+export default Main

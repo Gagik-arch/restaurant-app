@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import * as L from "leaflet";
-import {useSelector} from "../../store";
-import {generateAddress} from '../../utils'
-import {useNavigate} from 'react-router-dom';
+import { useSelector } from "../../store";
+import { generateAddress } from '../../utils'
+import { useNavigate } from 'react-router-dom';
 import locationApi from '../../api/location'
 
 const defaultData = {
@@ -20,7 +20,7 @@ let map, marker, popup;
 
 const Map = () => {
     const navigate = useNavigate()
-    const {data, error} = useSelector(state => state.latlng)
+    const { data, error } = useSelector(state => state.latlng)
     const restaurants = useSelector(state => state.restaurants)
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const Map = () => {
 
     useEffect(() => {
         if (data) {
-            let {location, address} = data
+            let { location, address } = data
 
             marker && map.removeLayer(marker); // remove marker
             map.setView(Object.values(location), ZOOM);
@@ -79,6 +79,9 @@ const Map = () => {
         return <div>Map location error</div>
     }
 
-    return null
+    return <div style={{
+        width: '100%',
+        height: '100%'
+    }} id="map" />
 }
 export default Map
