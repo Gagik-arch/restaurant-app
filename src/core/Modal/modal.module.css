@@ -28,7 +28,7 @@
 }
 
 .modal_visible {
-    animation: visible 500ms forwards 1, ease-in;
+    animation: visible 400ms forwards 1, ease-in;
 }
 
 @keyframes visible {
@@ -48,7 +48,7 @@
 }
 
 .modal_hidden {
-    animation: hidden 500ms forwards 1, ease-in;
+    animation: hidden 400ms forwards 1, ease-in;
 
 }
 
