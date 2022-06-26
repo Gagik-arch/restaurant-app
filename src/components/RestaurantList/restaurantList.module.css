@@ -36,7 +36,7 @@
     user-select: none;
     animation: list 350ms ease-out 0s 1 backwards;
     transition: 150ms all ease;
-    border: 1px solid rgba(0, 0, 0, 0.089);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
 }
 
@@ -44,7 +44,7 @@
     background-color: rgba(238, 238, 238, 0.2);
     box-shadow: 0 0 10px rgba(206, 206, 206, 0.9);
     transform: scale(1.05);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
 }
 
 
