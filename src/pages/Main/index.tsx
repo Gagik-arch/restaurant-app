@@ -15,16 +15,26 @@ const Main: FC = (): JSX.Element => {
 
   return (
     <div className={s.container}>
-      {/* <button onClick={() => setVisibility(!visibility)} className={s.btn}>
+      <button
+        onClick={() => setVisibility(!visibility)}
+        className={['modal-handler', s.btn].join(' ')}
+      >
         click
       </button>
-      <button onClick={() => setVisibility(!visibility)} className={s.btn2}>
+      <button
+        onClick={() => setVisibility(!visibility)}
+        className={['modal-handler', s.btn2].join(' ')}
+      >
         click
-      </button> */}
+      </button>
 
       <RestaurantList />
       <Map />
-      {/* <Modal visibility={visibility} setVisibility={setVisibility} /> */}
+      <Modal visibility={visibility} setVisibility={setVisibility}>
+        <div style={{ padding: 50, width: 400, height: 300 }}>
+          btn2dasd asd asd as dasasdasd
+        </div>
+      </Modal>
     </div>
   )
 }

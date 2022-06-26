@@ -5,18 +5,22 @@ import { sendFeedback } from './../../store/asyncThunks/restaurants'
 interface IProps {
   visibility: boolean
   setVisibility: (visibility: boolean) => void
+  children: React.ReactNode
 }
 
 const root = document.documentElement
 
-root.addEventListener('click', (e) => {
-  root.style.setProperty('--mouse-x', e.pageX + 'px')
-  root.style.setProperty('--mouse-y', e.pageY + 'px')
+window.addEventListener('click', (e) => {
+  const target = (e.target as Element).closest('.modal-handler')
+  if (target) {
+    root.style.setProperty('--mouse-x', e.pageX + 'px')
+    root.style.setProperty('--mouse-y', e.pageY + 'px')
+  }
 })
 
 let timer: NodeJS.Timeout
 
-const Modal: FC<IProps> = ({ visibility, setVisibility }) => {
+const Modal: FC<IProps> = ({ visibility, setVisibility, children }) => {
   const modal = useRef<HTMLDivElement>()
 
   useLayoutEffect(() => {
@@ -53,15 +57,7 @@ const Modal: FC<IProps> = ({ visibility, setVisibility }) => {
           s['modal_' + (visibility ? 'visible' : 'hidden')],
         ].join(' ')}
       >
-        <div className={s.block}>
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-          asdad asdasdasd <br />
-        </div>
+        <div className={s.block}>{children}</div>
       </div>
     </div>
   ) : null
