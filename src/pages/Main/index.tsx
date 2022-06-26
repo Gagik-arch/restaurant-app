@@ -15,15 +15,16 @@ const Main: FC = (): JSX.Element => {
 
   return (
     <div className={s.container}>
-      <button onClick={() => setVisibility(!visibility)} className={s.btn}>
+      {/* <button onClick={() => setVisibility(!visibility)} className={s.btn}>
         click
       </button>
       <button onClick={() => setVisibility(!visibility)} className={s.btn2}>
         click
-      </button>
+      </button> */}
+
       <RestaurantList />
       <Map />
-      <Modal visibility={visibility} setVisibility={setVisibility} />
+      {/* <Modal visibility={visibility} setVisibility={setVisibility} /> */}
     </div>
   )
 }
