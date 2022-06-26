@@ -57,7 +57,7 @@ const Modal: FC<IProps> = ({ visibility, setVisibility, children }) => {
           s['modal_' + (visibility ? 'visible' : 'hidden')],
         ].join(' ')}
       >
-        <div className={s.block}>{children}</div>
+        {children}
       </div>
     </div>
   ) : null

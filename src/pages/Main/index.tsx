@@ -31,9 +31,9 @@ const Main: FC = (): JSX.Element => {
       <RestaurantList />
       <Map />
       <Modal visibility={visibility} setVisibility={setVisibility}>
-        <div style={{ padding: 50, width: 400, height: 300 }}>
-          btn2dasd asd asd as dasasdasd
-        </div>
+        {/* <div style={{ padding: 50, width: 400, height: 300 }}> */}
+        btn2dasd asd asd as dasasdasd
+        {/* </div> */}
       </Modal>
     </div>
   )
