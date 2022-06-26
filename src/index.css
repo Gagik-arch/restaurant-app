@@ -1,22 +1,45 @@
 @import "./styles/variables.css";
 
-body, html, #root, .app {
+/* *********************************************** */
+/* custom svg  */
+/* .svg-container {
+    width: 24px;
+    height: 24px;
+    resize: both;
+    overflow: hidden;
+    border: 1px dashed #aaa;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+} */
+
+/* *********************************************** */
+
+
+body,
+html,
+#root,
+.app {
     height: 100%;
 }
 
 body {
     margin: 0;
     background-color: rgba(241, 241, 241, 0.38);
-    font-family:  sans-serif;
+    font-family: sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
     color: black;
 }
 
-svg{
+svg {
     pointer-events: none;
 }
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -31,4 +54,3 @@ svg{
     border-radius: 6px;
     border: 2px solid #f6f6f6;
 }
-
