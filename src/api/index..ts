@@ -7,22 +7,22 @@ interface IConfigureRequest {
 class Api {
     private readonly URL: string;
 
-    constructor(private baseUrl: string = '') {
+    constructor(private baseUrl: string = '', private cleanReq:boolean = false) {
         this.URL = baseUrl
     }
 
     public get<T>(url: string = '', cleanReq?: boolean): Promise<T> {
-        return this.configureRequest({url}, cleanReq)
+        return this.configureRequest({url})
     }
 
     public post<T>(url: string = '', body: any, cleanReq?: boolean): Promise<T> {
-        return this.configureRequest({url, body, method: 'post'}, cleanReq)
+        return this.configureRequest({url, body, method: 'post'})
     }
 
-    private configureRequest({url = '', method = 'get', body}: IConfigureRequest, cleanReq: boolean = false) {
+    private configureRequest({url = '', method = 'get', body}: IConfigureRequest) {
         const token: string | null = localStorage.getItem('token')
         const headers = new Headers()
-        url = cleanReq ? url : (process.env.REACT_APP_REQUEST_URL + this.URL + url)
+        url = this.cleanReq  ? url : (process.env.REACT_APP_REQUEST_URL + this.URL + url)
 
         const config: RequestInit = {method};
 
