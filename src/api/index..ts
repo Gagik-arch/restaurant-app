@@ -22,7 +22,9 @@ class Api {
     private configureRequest({url = '', method = 'get', body}: IConfigureRequest) {
         const token: string | null = localStorage.getItem('token')
         const headers = new Headers()
-        url = this.cleanReq  ? url : (process.env.REACT_APP_REQUEST_URL + this.URL + url)
+        url = this.cleanReq  ?
+            this.URL+ url :
+            (process.env.REACT_APP_REQUEST_URL + this.URL + url)
 
         const config: RequestInit = {method};
 
