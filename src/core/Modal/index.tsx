@@ -24,6 +24,7 @@ const Modal: FC<IProps> = ({ visibility, setVisibility, children }) => {
   const modal = useRef<HTMLDivElement>()
 
   useLayoutEffect(() => {
+    // console.log(!!window.WebGLRenderingContext, navigator.hardwareConcurrency)
     clearTimeout(timer)
   }, [])
 
